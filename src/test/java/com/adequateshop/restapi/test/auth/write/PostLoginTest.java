@@ -11,6 +11,9 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class PostLoginTest extends BaseApiTest {
     @Test
     public void loginShouldSuccessful() {
+
+        PostRegistrationTest postRegistrationTest = new PostRegistrationTest();
+
         String email = "apiTester@gmail.com";
         String password = "123456";
 
