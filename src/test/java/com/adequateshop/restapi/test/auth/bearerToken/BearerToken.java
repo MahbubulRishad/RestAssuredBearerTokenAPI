@@ -1,18 +1,13 @@
-package com.adequateshop.restapi.test.auth.write;
+package com.adequateshop.restapi.test.auth.bearerToken;
 
 import com.adequateshop.restapi.baseTest.BaseApiTest;
 import io.restassured.response.ValidatableResponse;
 import org.json.simple.JSONObject;
-import org.testng.annotations.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.equalTo;
-//import static org.hamcrest.core.IsEqual.equalTo;
 
-public class PostLoginTest extends BaseApiTest {
-    @Test
-    public void loginShouldSuccessful() {
-
+public class BearerToken extends BaseApiTest {
+    public static String getBearerToken(){
         String email = "apiTester@gmail.com";
         String password = "123456";
 
@@ -20,18 +15,19 @@ public class PostLoginTest extends BaseApiTest {
         loginJson.put("email", email);
         loginJson.put("password", password);
 
-        given()
+        ValidatableResponse validatableResponse = given()
                 .header("Content-Type", "application/json")
                 .log().uri()
                 .body(loginJson.toString())
+                .log().body()
                 .when()
                 .post("/authaccount/login")
                 .then()
-                .log().body()
-                .body("data.Email", equalTo(email))
                 .statusCode(200);
+
+        String token = validatableResponse.extract().jsonPath()
+                .getString("data.Token");
+
+        return token;
     }
-
-
-
 }

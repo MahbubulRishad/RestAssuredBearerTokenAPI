@@ -2,6 +2,10 @@ package com.adequateshop.restapi.utill;
 
 import com.adequateshop.restapi.baseTest.BaseApiTest;
 import com.thedeanda.lorem.LoremIpsum;
+import io.restassured.response.ValidatableResponse;
+import org.json.simple.JSONObject;
+
+import static io.restassured.RestAssured.given;
 
 public class General extends BaseApiTest {
     public static String getDummyName(){
@@ -12,4 +16,5 @@ public class General extends BaseApiTest {
         String dummyEmail = LoremIpsum.getInstance().getEmail();
         return dummyEmail;
     }
+
 }
