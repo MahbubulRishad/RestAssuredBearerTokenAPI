@@ -17,4 +17,9 @@ public class General extends BaseApiTest {
         return dummyEmail;
     }
 
+    public static String getDummyLocation(){
+        String location = LoremIpsum.getInstance().getCountry();
+        return location;
+    }
+
 }

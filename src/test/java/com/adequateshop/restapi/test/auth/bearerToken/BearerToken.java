@@ -19,7 +19,7 @@ public class BearerToken extends BaseApiTest {
                 .header("Content-Type", "application/json")
                 .log().uri()
                 .body(loginJson.toString())
-                .log().body()
+             //   .log().body()
                 .when()
                 .post("/authaccount/login")
                 .then()
